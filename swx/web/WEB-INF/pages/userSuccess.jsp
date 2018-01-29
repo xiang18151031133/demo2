@@ -16,6 +16,6 @@
     <title></title>
 </head>
 <body>
-
+    <a>添加简历</a>
 </body>
 </html>
