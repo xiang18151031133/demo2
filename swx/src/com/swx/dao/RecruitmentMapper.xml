@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.swx.dao.RecruitmentMapper">
+
+    <insert id="addRecruitment">
+        insert into T_RECRUITMENT values(T_RECRUITMENT_SEQ.nextval,#{rm_cid},#{rm_did},
+        #{rm_jid},#{rm_peopleneeded},#{rm_requirement},#{rm_money},#{rm_workplace},0)
+    </insert>
+</mapper>
