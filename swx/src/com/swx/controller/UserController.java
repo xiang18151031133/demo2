@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @Controller
 public class UserController {
@@ -21,10 +22,11 @@ public class UserController {
     }
 
     @RequestMapping(value = "/login",method = RequestMethod.POST)
-    public String login(User user)throws Exception{
+    public String login(User user, HttpSession session)throws Exception{
         User user1=userService.getUser(user);
         if(user1!=null){
-            return "../../index";
+            session.setAttribute("user",user1);
+            return "userSuccess";
         }
        return "login";
     }
@@ -51,5 +53,8 @@ public class UserController {
             response.getWriter().print("ok");
         }
     }
-
+    @RequestMapping(value = "/toLookResume",method = RequestMethod.GET)
+    public String toLookResume(){
+        return "lookResume";
+    }
 }

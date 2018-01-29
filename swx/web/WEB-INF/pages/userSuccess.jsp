@@ -16,6 +16,7 @@
     <title></title>
 </head>
 <body>
-    <a>添加简历</a>
+    <a href="toAddResume">添加简历</a>
+    <a href="toLookResume">查看简历</a>
 </body>
 </html>
