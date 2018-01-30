@@ -5,7 +5,15 @@
 <mapper namespace="com.swx.dao.RecruitmentMapper">
 
     <insert id="addRecruitment">
-        insert into T_RECRUITMENT values(T_RECRUITMENT_SEQ.nextval,#{rm_cid},#{rm_did},
-        #{rm_jid},#{rm_peopleneeded},#{rm_requirement},#{rm_money},#{rm_workplace},0)
+        insert into T_RECRUITMENT values(T_RECRUITMENT_SEQ.nextval,#{rm_cid},#{rm_jdesc},
+        #{rm_jname},#{rm_peopleneeded},#{rm_requirement},#{rm_money},#{rm_workplace},0)
     </insert>
+    <select id="listAll" resultType="com.swx.model.Recruitment">
+        select * from T_RECRUITMENT
+    </select>
+    <select id="getRecruitmentById" resultType="com.swx.model.Recruitment">
+        select *
+        from T_RECRUITMENT
+        where rm_id=#{rm_id}
+    </select>
 </mapper>

@@ -1,6 +1,8 @@
 package com.swx.controller;
 
+import com.swx.model.Recruitment;
 import com.swx.model.User;
+import com.swx.service.RecruitmentService;
 import com.swx.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,11 +12,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Controller
 public class UserController {
     @Resource
     private UserService userService;
+
+    @Resource
+    private RecruitmentService recruitmentService;
 
     @RequestMapping(value = "/toLogin",method = RequestMethod.GET)
     public String toLogin(){
@@ -24,8 +30,10 @@ public class UserController {
     @RequestMapping(value = "/login",method = RequestMethod.POST)
     public String login(User user, HttpSession session)throws Exception{
         User user1=userService.getUser(user);
+        List<Recruitment> recruitments=recruitmentService.listAll();
         if(user1!=null){
             session.setAttribute("user",user1);
+            session.setAttribute("recruitments",recruitments);
             return "userSuccess";
         }
        return "login";

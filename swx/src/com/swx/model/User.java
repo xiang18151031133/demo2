@@ -1,21 +1,25 @@
 package com.swx.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class User implements Serializable {
     private int u_id;
     private String u_name;
     private String u_pass;
     private int u_status;
+    List<Resume> resumes=new ArrayList<Resume>();
 
     public User() {
     }
 
-    public User(int u_id, String u_name, String u_pass, int u_status) {
+    public User(int u_id, String u_name, String u_pass, int u_status, List<Resume> resumes) {
         this.u_id = u_id;
         this.u_name = u_name;
         this.u_pass = u_pass;
         this.u_status = u_status;
+        this.resumes = resumes;
     }
 
     public int getU_id() {
@@ -50,6 +54,14 @@ public class User implements Serializable {
         this.u_status = u_status;
     }
 
+    public List<Resume> getResumes() {
+        return resumes;
+    }
+
+    public void setResumes(List<Resume> resumes) {
+        this.resumes = resumes;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -57,6 +69,7 @@ public class User implements Serializable {
                 ", u_name='" + u_name + '\'' +
                 ", u_pass='" + u_pass + '\'' +
                 ", u_status=" + u_status +
+                ", resumes=" + resumes +
                 '}';
     }
 }
