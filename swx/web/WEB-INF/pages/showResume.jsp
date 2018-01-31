@@ -42,5 +42,8 @@
             <td colspan="4">曾获奖励：${sessionScope.resume.r_award }</td>
         </tr>
     </table>
+    <form action="updateOrAdd" method="post">
+        <input type="submit" value="修改"/>
+    </form>
 </body>
 </html>

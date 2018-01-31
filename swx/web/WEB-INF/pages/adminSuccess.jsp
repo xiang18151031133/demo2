@@ -17,6 +17,6 @@
 </head>
 <body>
     <a href="toAddRecruitment">创建招聘信息</a>
-    <a href="">查看招聘信息</a>
+    <a href="showInterview">查看面试信息</a>
 </body>
 </html>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.swx.dao.EmployeeMapper">
+    <insert id="addEmployee">
+        insert into T_EMPLOYEE values(T_EMPLOYEE_SEQ.nextval,#{e_name},#{e_password},#{e_realname},
+        #{e_age},#{e_ethnicity},#{e_phone},#{e_address},#{e_hiretime},#{e_cid},#{e_jdesc},#{e_jname},
+        #{e_basicwage},#{e_workstarttime,jdbcType=VARCHAR},#{e_workendtime,jdbcType=VARCHAR},#{e_workstatus})
+    </insert>
+    <select id="getEmployee" resultType="com.swx.model.Employee">
+        select *
+        from T_EMPLOYEE
+        where e_name=#{e_name} and e_password=#{e_password}
+    </select>
+</mapper>

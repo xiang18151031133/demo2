@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.swx.dao.InterviewMapper">
+    <insert id="addInterview">
+        insert into T_INTERVIEW values(T_INTERVIEW_SEQ.nextval,#{i_cid},#{i_uid},
+        #{i_interviewtime,jdbcType=VARCHAR},#{i_interviewaddress,jdbcType=VARCHAR},#{i_rmid},
+        #{i_ustatus},#{i_result})
+    </insert>
+    <update id="updateInterviw">
+        update T_INTERVIEW set i_cid=#{i_cid},i_uid=#{i_uid},
+        i_interviewtime=#{i_interviewtime},i_interviewaddress=#{i_interviewaddress},
+        i_rmid=#{i_rmid},i_ustatus=#{i_ustatus},i_result=#{i_result}
+        where i_id=#{i_id}
+    </update>
+    <select id="listAll" resultType="com.swx.model.Interview">
+        select * from T_INTERVIEW
+    </select>
+    <select id="getInterviewById" resultType="com.swx.model.Interview">
+        select *
+        from T_INTERVIEW
+        where i_id=#{i_id}
+    </select>
+    <select id="getInterviewByUid" resultType="com.swx.model.Interview">
+        select *
+        from T_INTERVIEW
+        where i_uid=#{r_uid}
+    </select>
+
+</mapper>

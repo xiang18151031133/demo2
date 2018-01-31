@@ -8,6 +8,10 @@
     <insert id="addUser">
         insert into t_user values(T_USER_SEQ.nextval,#{u_name},#{u_pass},0)
     </insert>
+    <update id="updateUser">
+        update T_USER set u_name=#{u_name},u_pass=#{u_pass},u_status=#{u_status}
+        where u_id=#{u_id}
+    </update>
     <select id="getUser" resultMap="userAndResume">
         select u.*,r.*
         from (select * from T_USER where u_name=#{u_name} and u_pass=#{u_pass})u
@@ -18,7 +22,7 @@
         <result property="u_name" column="u_name"/>
         <result property="u_pass" column="u_pass"/>
         <result property="u_status" column="u_status"/>
-        <collection property="resumes" ofType="Resume">
+        <association property="resume" javaType="Resume">
             <id property="r_id" column="r_id"/>
             <result property="r_name" column="r_name"/>
             <result property="r_age" column="r_age"/>
@@ -32,7 +36,7 @@
             <result property="r_selfassessment" column="r_selfassessment"/>
             <result property="r_intership" column="r_intership"/>
             <result property="r_award" column="r_award"/>
-        </collection>
+        </association>
     </resultMap>
 
     <select id="getUserByName" resultType="com.swx.model.User">
@@ -40,4 +44,31 @@
         from T_USER
         where u_name=#{u_name}
     </select>
+    <select id="getUserById" resultMap="userAndResumeByUid">
+        select u.*,r.*
+        from T_USER u,T_RESUME r
+        where u_id=r_uid
+    </select>
+
+    <resultMap id="userAndResumeByUid" type="User">
+        <id property="u_id" column="u_id"/>
+        <result property="u_name" column="u_name"/>
+        <result property="u_pass" column="u_pass"/>
+        <result property="u_status" column="u_status"/>
+        <association property="resume" javaType="Resume">
+            <id property="r_id" column="r_id"/>
+            <result property="r_name" column="r_name"/>
+            <result property="r_age" column="r_age"/>
+            <result property="r_ethnicity" column="r_ethnicity"/>
+            <result property="r_phone" column="r_phone"/>
+            <result property="r_height" column="r_height"/>
+            <result property="r_weight" column="r_weight"/>
+            <result property="r_intension" column="r_intension"/>
+            <result property="r_address" column="r_address"/>
+            <result property="r_schoolofgraduation" column="r_schoolofgraduation"/>
+            <result property="r_selfassessment" column="r_selfassessment"/>
+            <result property="r_intership" column="r_intership"/>
+            <result property="r_award" column="r_award"/>
+        </association>
+    </resultMap>
 </mapper>

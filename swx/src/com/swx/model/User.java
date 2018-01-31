@@ -9,17 +9,17 @@ public class User implements Serializable {
     private String u_name;
     private String u_pass;
     private int u_status;
-    List<Resume> resumes=new ArrayList<Resume>();
+    private Resume resume;
 
     public User() {
     }
 
-    public User(int u_id, String u_name, String u_pass, int u_status, List<Resume> resumes) {
+    public User(int u_id, String u_name, String u_pass, int u_status, Resume resume) {
         this.u_id = u_id;
         this.u_name = u_name;
         this.u_pass = u_pass;
         this.u_status = u_status;
-        this.resumes = resumes;
+        this.resume = resume;
     }
 
     public int getU_id() {
@@ -54,12 +54,12 @@ public class User implements Serializable {
         this.u_status = u_status;
     }
 
-    public List<Resume> getResumes() {
-        return resumes;
+    public Resume getResume() {
+        return resume;
     }
 
-    public void setResumes(List<Resume> resumes) {
-        this.resumes = resumes;
+    public void setResume(Resume resume) {
+        this.resume = resume;
     }
 
     @Override
@@ -69,7 +69,7 @@ public class User implements Serializable {
                 ", u_name='" + u_name + '\'' +
                 ", u_pass='" + u_pass + '\'' +
                 ", u_status=" + u_status +
-                ", resumes=" + resumes +
+                ", resume=" + resume +
                 '}';
     }
 }

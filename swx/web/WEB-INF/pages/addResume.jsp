@@ -35,7 +35,7 @@
         实习经历：<textarea name="r_intership"></textarea>
         &nbsp;&nbsp;&nbsp;&nbsp;
         曾获奖励：<textarea name="r_award"></textarea><br>
-        <input type="submit" value="创建"/>
+        <input type="submit" value="修改"/>
     </form>
 </body>
 </html>

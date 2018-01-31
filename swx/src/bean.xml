@@ -32,7 +32,7 @@
         <tx:attributes>
             <tx:method name="add*"/>
             <tx:method name="delete*"/>
-            <tx:method name="update"/>
+            <tx:method name="update*"/>
         </tx:attributes>
     </tx:advice>
 

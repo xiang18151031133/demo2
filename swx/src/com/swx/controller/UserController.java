@@ -1,8 +1,10 @@
 package com.swx.controller;
 
 import com.swx.model.Recruitment;
+import com.swx.model.Resume;
 import com.swx.model.User;
 import com.swx.service.RecruitmentService;
+import com.swx.service.ResumeService;
 import com.swx.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +23,9 @@ public class UserController {
 
     @Resource
     private RecruitmentService recruitmentService;
+
+    @Resource
+    private ResumeService resumeService;
 
     @RequestMapping(value = "/toLogin",method = RequestMethod.GET)
     public String toLogin(){
@@ -62,7 +67,10 @@ public class UserController {
         }
     }
     @RequestMapping(value = "/toLookResume",method = RequestMethod.GET)
-    public String toLookResume(){
-        return "lookResume";
+    public String toLookResume(HttpSession session){
+        Resume resume=resumeService.getResume();
+        session.setAttribute("resume",resume);
+        return "showResume";
     }
+
 }

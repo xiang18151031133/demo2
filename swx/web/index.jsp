@@ -18,7 +18,8 @@
 <body>
     <a href="toLogin">登录</a>
     <a href="toRegister">注册</a>
-    <a href="toAdminLogin">管理员</a>
+    <a href="toAdminLogin">管理员</a><br>
+    <a href="ToEmpLogin">员工登录</a>
 
 </body>
 </html>

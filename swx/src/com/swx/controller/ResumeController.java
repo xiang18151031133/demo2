@@ -19,49 +19,31 @@ public class ResumeController {
     @Resource
     private UserService userService;
 
-    @RequestMapping(value = "/toAddResume",method = RequestMethod.GET)
-    public String toAddResume(){
-        return "addResume";
-    }
-
     @RequestMapping(value = "/addResume",method = RequestMethod.POST)
     public String addResume(Resume resume, HttpSession session)throws Exception{
         User user= (User) session.getAttribute("user");
         resume.setUser(user);
         resumeService.addResume(resume);
-        User user1=userService.getUser(user);
-        session.setAttribute("user",user1);
-        return "lookResume";
-    }
-
-    @RequestMapping(value = "/showResume",method = RequestMethod.GET)
-    public String showResume(Resume resume,HttpSession session)throws Exception{
-        Resume resume1=resumeService.getResume(resume);
+        Resume resume1=resumeService.getResume();
         session.setAttribute("resume",resume1);
         return "showResume";
     }
 
-    @RequestMapping(value = "/toUpdateResume",method = RequestMethod.POST)
-    public String toUpdateResume(Resume resume,HttpSession session)throws Exception{
-        Resume resume1=resumeService.getResume(resume);
-        session.setAttribute("resume",resume1);
+    @RequestMapping(value = "/updateOrAdd",method = RequestMethod.POST)
+    public String updateOrAdd(HttpSession session){
+        Resume resume=resumeService.getResume();
+        if(resume==null){
+            return "addResume";
+        }
+        session.setAttribute("resume",resume);
         return "updateResume";
     }
 
     @RequestMapping(value = "/updateResume",method = RequestMethod.POST)
     public String updateResume(Resume resume,HttpSession session)throws Exception{
-        User user= (User) session.getAttribute("user");
         resumeService.updateResume(resume);
-        User user1=userService.getUser(user);
-        session.setAttribute("user",user1);
-        return "lookResume";
-    }
-    @RequestMapping(value = "/deleteResume",method = RequestMethod.POST)
-    public String deleteResume(Resume resume,HttpSession session)throws Exception{
-        User user= (User) session.getAttribute("user");
-        resumeService.deleteResume(resume);
-        User user1=userService.getUser(user);
-        session.setAttribute("user",user1);
-        return "lookResume";
+        Resume resume1=resumeService.getResume();
+        session.setAttribute("resume",resume1);
+        return "showResume";
     }
 }

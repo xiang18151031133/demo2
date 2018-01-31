@@ -20,6 +20,6 @@
     <select id="getResume" resultType="com.swx.model.Resume">
         select *
         from T_RESUME
-        where r_id=#{r_id}
     </select>
+
 </mapper>
