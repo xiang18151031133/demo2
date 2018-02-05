@@ -42,5 +42,6 @@
         <jarDirectory url="file://$MODULE_DIR$/web/WEB-INF/lib" recursive="false" type="SOURCES" />
       </library>
     </orderEntry>
+    <orderEntry type="library" name="jackson-annotations-2.2.1" level="project" />
   </component>
 </module>

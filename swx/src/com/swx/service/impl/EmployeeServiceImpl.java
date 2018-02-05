@@ -20,4 +20,14 @@ public class EmployeeServiceImpl implements EmployeeService {
     public Employee getEmployee(Employee employee) {
         return employeeMapper.getEmployee(employee);
     }
+
+    @Override
+    public Employee getEmployeeById(Employee employee) {
+        return employeeMapper.getEmployeeById(employee);
+    }
+
+    @Override
+    public boolean updateEmployee(Employee employee) {
+        return employeeMapper.updateEmployee(employee);
+    }
 }

@@ -4,8 +4,8 @@ import java.io.Serializable;
 
 public class Job implements Serializable {
     private int j_id;
-    private int j_did;
-    private String j_name;
+    private int j_did;//对应的部门
+    private String j_name;//职位名称
 
     public Job() {
     }

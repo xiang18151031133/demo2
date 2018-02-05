@@ -5,4 +5,9 @@
     <select id="listAll" resultType="com.swx.model.Job">
         select * from T_JOB
     </select>
+    <select id="listByDeptId" resultType="com.swx.model.Job">
+        select *
+        from T_JOB
+        where j_did=#{d_id}
+    </select>
 </mapper>

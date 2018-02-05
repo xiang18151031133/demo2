@@ -6,9 +6,22 @@
         #{e_age},#{e_ethnicity},#{e_phone},#{e_address},#{e_hiretime},#{e_cid},#{e_jdesc},#{e_jname},
         #{e_basicwage},#{e_workstarttime,jdbcType=VARCHAR},#{e_workendtime,jdbcType=VARCHAR},#{e_workstatus})
     </insert>
+    <update id="updateEmployee">
+        update T_EMPLOYEE set e_name=#{e_name},e_password=#{e_password},e_realname=#{e_realname},
+        e_age=#{e_age},e_ethnicity=#{e_ethnicity},e_phone=#{e_phone},e_address=#{e_address},
+        e_hiretime=#{e_hiretime},e_cid=#{e_cid},e_jdesc=#{e_jdesc},e_jname=#{e_jname},
+        e_basicwage=#{e_basicwage},e_workstarttime=#{e_workstarttime,jdbcType=VARCHAR},
+        e_workendtime=#{e_workendtime,jdbcType=VARCHAR},e_workstatus=#{e_workstatus}
+        where e_id=#{e_id}
+    </update>
     <select id="getEmployee" resultType="com.swx.model.Employee">
         select *
         from T_EMPLOYEE
         where e_name=#{e_name} and e_password=#{e_password}
+    </select>
+    <select id="getEmployeeById" resultType="com.swx.model.Employee">
+        select *
+        from T_EMPLOYEE
+        where e_id=#{e_id}
     </select>
 </mapper>

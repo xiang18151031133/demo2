@@ -60,7 +60,7 @@ public class UserController {
     @RequestMapping(value = "/checkName",method = RequestMethod.POST)
     public @ResponseBody void checkName(User user, HttpServletResponse response)throws Exception{
         User user1=userService.getUserByName(user);
-        if(user1!=null){
+        if(user!=null){
             response.getWriter().print("用户已存在");
         }else {
             response.getWriter().print("ok");

@@ -1,6 +1,7 @@
 package com.swx.service.impl;
 
 import com.swx.dao.JobMapper;
+import com.swx.model.Department;
 import com.swx.model.Job;
 import com.swx.service.JobService;
 import org.springframework.stereotype.Service;
@@ -15,5 +16,10 @@ public class JobServiceImpl implements JobService {
     @Override
     public List<Job> listAll() {
         return jobMapper.listAll();
+    }
+
+    @Override
+    public List<Job> listByDeptId(Department department) {
+        return jobMapper.listByDeptId(department);
     }
 }

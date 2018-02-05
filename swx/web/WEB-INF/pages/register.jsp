@@ -35,6 +35,7 @@
                 var rex=/^[a-zA-Z][a-zA-Z0-9_]{4,15}$/;
                 var uname=$("#name").val();
                 if(rex.test(uname)&&uname!=""){
+                    alert("****")
                     $.ajax({
                         type:"post",
                         url:"checkName",

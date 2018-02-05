@@ -1,21 +1,18 @@
 package com.swx.controller;
 
-import com.swx.model.Employee;
-import com.swx.model.Interview;
-import com.swx.model.Recruitment;
-import com.swx.model.User;
-import com.swx.service.EmployeeService;
-import com.swx.service.InterviewService;
-import com.swx.service.RecruitmentService;
-import com.swx.service.UserService;
+import com.swx.model.*;
+import com.swx.service.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 @Controller
 public class EmployeeController {
@@ -30,6 +27,24 @@ public class EmployeeController {
 
     @Resource
     private RecruitmentService recruitmentService;
+
+    @Resource
+    private SalaryService salaryService;
+
+    @Resource
+    private TrainService trainService;
+
+    @Resource
+    private RewardService rewardService;
+
+    @Resource
+    private AttendanceService attendanceService;
+
+    @Resource
+    private DepartmentService departmentService;
+
+    @Resource
+    private JobService jobService;
 
     @RequestMapping(value = "/hire",method = RequestMethod.POST)
     public String hire(User user, Interview interview, HttpSession session){
@@ -57,6 +72,7 @@ public class EmployeeController {
         employee.setE_jdesc(recruitment1.getRm_jdesc());
         employee.setE_jname(recruitment1.getRm_jname());
         employee.setE_basicwage(recruitment1.getRm_money());
+        employee.setE_workstatus(1);
         employeeService.addEmployee(employee);
         return "../../index";
     }
@@ -68,14 +84,43 @@ public class EmployeeController {
     @RequestMapping("/empLogin")
     public String empLogin(Employee employee,HttpSession session){
         Employee employee1=employeeService.getEmployee(employee);
+        List<Salary> salaries=salaryService.listAll(employee1);
+        List<Train> trains=trainService.listAll(employee1);
+        List<Reward> rewards=rewardService.listAll(employee1);
+        List<Attendance> attendances=attendanceService.listAll(employee1);
+        List<Department> departments=departmentService.listAll();
+        List<Job> jobs=jobService.listAll();
         if(employee1!=null){
+            session.setAttribute("employee",employee1);
+            session.setAttribute("salaries",salaries);
+            session.setAttribute("trains",trains);
+            session.setAttribute("rewards",rewards);
+            session.setAttribute("attendances",attendances);
+            session.setAttribute("departments",departments);
+            session.setAttribute("jobs",jobs);
             return "empLoginSuccess";
         }
         return "empLogin";
     }
 
-    @RequestMapping("/toUpdateEmp")
-    public String toUpdateEmp(){
-        return "updateEmp";
+    @RequestMapping("/toshowpersonalinfo")
+    public String toshowpersonalinfo(){
+        return "showpersonalinfo";
+    }
+
+    @RequestMapping("/modifyPass")
+    public String modifyPass(Employee employee,HttpSession session){
+        Employee employee1= (Employee) session.getAttribute("employee");
+        employee1.setE_password(employee.getE_password());
+        employeeService.updateEmployee(employee1);
+        return "../../index";
+    }
+
+    @RequestMapping("/searchJobs")
+    public @ResponseBody void searchJobs(Department department, HttpServletResponse response){
+        System.out.println("$$$"+department);
+        List<Job> jobs=jobService.listByDeptId(department);
+        System.out.println(jobs);
+
     }
 }
