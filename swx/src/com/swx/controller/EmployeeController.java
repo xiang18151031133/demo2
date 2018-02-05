@@ -117,10 +117,8 @@ public class EmployeeController {
     }
 
     @RequestMapping("/searchJobs")
-    public @ResponseBody void searchJobs(Department department, HttpServletResponse response){
-        System.out.println("$$$"+department);
+    public @ResponseBody List<Job> searchJobs(Department department, HttpServletResponse response){
         List<Job> jobs=jobService.listByDeptId(department);
-        System.out.println(jobs);
-
+        return jobs;
     }
 }

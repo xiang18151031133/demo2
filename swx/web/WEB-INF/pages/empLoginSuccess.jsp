@@ -70,10 +70,20 @@
                 $.ajax({
                     async:false,
                     type:"post",
+                    dataType: "json",
                     url:"searchJobs",
                     data:{d_id:$("#st1").val()},
-                    success:function () {
-
+                    success:function (data) {
+                        if($("#st1").val()==-1){
+                            $("#st2").empty();
+                            $("#st2").append("<option value=''>----选择职位----</option>");
+                        }else {
+                            $("#st2").empty();
+                            $("#st2").append("<option value=''>----选择职位----</option>");
+                            for(var i=0;i<data.length;i++){
+                                $("#st2").append( "<option value='"+data[i].j_id+"'>"+data[i].j_name+"</option>");
+                            }
+                        }
                     }
                 })
             })
@@ -202,16 +212,13 @@
         </table>
     </div>
     <select id="st1" name="d_id">
-        <option>---请选择---</option>
+        <option value="-1">---请选择部门---</option>
         <c:forEach items="${sessionScope.departments}" var="department">
             <option value="${department.d_id}">${department.d_name}</option>
         </c:forEach>
     </select>
-    <select >
-
-        <%--<c:forEach items="${sessionScope.jobs}" var="job">
-            <option value="${job.j_id}">${job.j_name}</option>
-        </c:forEach>--%>
+    <select id="st2" name="j_id">
+        <option value="-2">---请选择职位---</option>
     </select>
 </body>
 </html>
