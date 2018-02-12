@@ -18,4 +18,24 @@ public class DepartmentServiceImpl implements DepartmentService {
     public List<Department> listAll() {
         return departmentMapper.listAll();
     }
+
+    @Override
+    public boolean addDepartment(Department department) {
+        return departmentMapper.addDepartment(department);
+    }
+
+    @Override
+    public Department getDeptById(Department department) {
+        return departmentMapper.getDeptById(department);
+    }
+
+    @Override
+    public boolean updateDeptById(Department department) {
+        return departmentMapper.updateDeptById(department);
+    }
+
+    @Override
+    public boolean deleteDeptById(Department department) {
+        return departmentMapper.deleteDeptById(department);
+    }
 }

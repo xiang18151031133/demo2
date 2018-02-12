@@ -17,8 +17,8 @@ public class ResumeServiceImpl implements ResumeService {
     }
 
     @Override
-    public Resume getResume() {
-        return resumeMapper.getResume();
+    public Resume getResume(int r_uid) {
+        return resumeMapper.getResume(r_uid);
     }
 
     @Override

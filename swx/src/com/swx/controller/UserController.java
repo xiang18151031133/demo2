@@ -68,7 +68,8 @@ public class UserController {
     }
     @RequestMapping(value = "/toLookResume",method = RequestMethod.GET)
     public String toLookResume(HttpSession session){
-        Resume resume=resumeService.getResume();
+        User user= (User) session.getAttribute("user");
+        Resume resume=resumeService.getResume(user.getU_id());
         session.setAttribute("resume",resume);
         return "showResume";
     }

@@ -87,6 +87,35 @@
                     }
                 })
             })
+            $("#bu5").click(function () {
+                $.ajax({
+                    type:"post",
+                    url:"upTime",
+                    success:function (data) {
+                        if(data=="OK"){
+                            alert("上班打卡成功")
+                        }else {
+                            alert("您迟到了")
+
+                        }
+                    }
+                })
+            })
+            $("#bu6").click(function () {
+                $.ajax({
+                    type:"post",
+                    url:"downTime",
+                    success:function (data) {
+                        if(data=="OK"){
+                            alert("下班打卡成功")
+                        }else if(data=="ERROR"){
+                            alert("早退打卡")
+                        }else {
+                            alert("请先上班打卡")
+                        }
+                    }
+                })
+            })
         })
     </script>
 </head>
@@ -97,6 +126,8 @@
     <button id="bu2">奖惩信息</button>
     <button id="bu3">考勤信息</button>
     <button id="bu4">薪资信息</button>
+    <button id="bu5">上班打卡</button>
+    <button id="bu6">下班打卡</button>
 
     <div style="display: none" id="div1">
         <form action="modifyPass" method="post">
@@ -211,14 +242,16 @@
             </c:forEach>
         </table>
     </div>
-    <select id="st1" name="d_id">
-        <option value="-1">---请选择部门---</option>
-        <c:forEach items="${sessionScope.departments}" var="department">
-            <option value="${department.d_id}">${department.d_name}</option>
-        </c:forEach>
-    </select>
-    <select id="st2" name="j_id">
-        <option value="-2">---请选择职位---</option>
-    </select>
+    <div>
+        <select id="st1" name="d_id">
+            <option value="-1">---请选择部门---</option>
+            <c:forEach items="${sessionScope.departments}" var="department">
+                <option value="${department.d_id}">${department.d_name}</option>
+            </c:forEach>
+        </select>
+        <select id="st2" name="j_id">
+            <option value="-2">---请选择职位---</option>
+        </select>
+    </div>
 </body>
 </html>

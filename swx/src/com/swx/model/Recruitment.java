@@ -10,14 +10,14 @@ public class Recruitment implements Serializable{
     private String rm_jname;//对应的职位
     private int rm_peopleneeded;//需求的人数
     private String rm_requirement;//职位需求
-    private String rm_money;//职位工资
+    private double rm_money;//职位工资
     private String rm_workplace;//工作地点
     private int rm_uid;//对应的应聘者
 
     public Recruitment() {
     }
 
-    public Recruitment(int rm_id, int rm_cid, String rm_jdesc, String rm_jname, int rm_peopleneeded, String rm_requirement, String rm_money, String rm_workplace, int rm_uid) {
+    public Recruitment(int rm_id, int rm_cid, String rm_jdesc, String rm_jname, int rm_peopleneeded, String rm_requirement, double rm_money, String rm_workplace, int rm_uid) {
         this.rm_id = rm_id;
         this.rm_cid = rm_cid;
         this.rm_jdesc = rm_jdesc;
@@ -77,11 +77,11 @@ public class Recruitment implements Serializable{
         this.rm_requirement = rm_requirement;
     }
 
-    public String getRm_money() {
+    public double getRm_money() {
         return rm_money;
     }
 
-    public void setRm_money(String rm_money) {
+    public void setRm_money(double rm_money) {
         this.rm_money = rm_money;
     }
 

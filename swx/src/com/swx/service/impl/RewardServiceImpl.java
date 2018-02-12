@@ -16,4 +16,19 @@ public class RewardServiceImpl implements RewardService {
     public List<Reward> listAll(Employee employee) {
         return rewardMapper.listAll(employee);
     }
+
+    @Override
+    public boolean addReward(Reward reward) {
+        return rewardMapper.addReward(reward);
+    }
+
+    @Override
+    public List<Reward> searchAll() {
+        return rewardMapper.searchAll();
+    }
+
+    @Override
+    public boolean updateRewardStatusByEid(int re_eid) {
+        return rewardMapper.updateRewardStatusByEid(re_eid);
+    }
 }

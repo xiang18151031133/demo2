@@ -44,13 +44,13 @@
         from T_USER
         where u_name=#{u_name}
     </select>
-    <select id="getUserById" resultMap="userAndResumeByUid">
-        select u.*,r.*
-        from T_USER u,T_RESUME r
-        where u_id=r_uid
+    <select id="getUserById" resultType="com.swx.model.User">
+        select *
+        from T_USER
+        where u_id=#{u_id}
     </select>
 
-    <resultMap id="userAndResumeByUid" type="User">
+    <!--<resultMap id="userAndResumeByUid" type="User">
         <id property="u_id" column="u_id"/>
         <result property="u_name" column="u_name"/>
         <result property="u_pass" column="u_pass"/>
@@ -70,5 +70,5 @@
             <result property="r_intership" column="r_intership"/>
             <result property="r_award" column="r_award"/>
         </association>
-    </resultMap>
+    </resultMap>-->
 </mapper>

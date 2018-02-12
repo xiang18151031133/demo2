@@ -27,7 +27,7 @@
         </select><br>
         需求的人数:<input type="number" name="rm_peopleneeded"/><br>
         职位需求:<input name="rm_requirement"/><br>
-        职位工资:<input name="rm_money"/><br>
+        职位工资:<input type="number" name="rm_money"/><br>
         工作地点:<input name="rm_workplace"/><br>
         <input type="submit" value="发布"/>
     </form>

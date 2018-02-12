@@ -16,4 +16,9 @@ public class SalaryServiceImpl implements SalaryService {
     public List<Salary> listAll(Employee employee) {
         return salaryMapper.listAll(employee);
     }
+
+    @Override
+    public boolean addSalary(Salary salary) {
+        return salaryMapper.addSalary(salary);
+    }
 }

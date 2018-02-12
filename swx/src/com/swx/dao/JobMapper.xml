@@ -2,6 +2,21 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.swx.dao.JobMapper">
+    <insert id="addJobs">
+        insert into T_JOB values(T_JOB_SEQ.nextval,#{j_did},#{j_name},#{j_createTime})
+    </insert>
+    <update id="updateJobById">
+        update T_JOB set J_NAME=#{j_name}
+        where j_id=#{j_id}
+    </update>
+    <delete id="deleteByDeptId">
+        delete from T_JOB
+        where j_did=#{j_did}
+    </delete>
+    <delete id="deleteByJobId">
+        delete from T_JOB
+        where j_id=#{j_id}
+    </delete>
     <select id="listAll" resultType="com.swx.model.Job">
         select * from T_JOB
     </select>
@@ -9,5 +24,10 @@
         select *
         from T_JOB
         where j_did=#{d_id}
+    </select>
+    <select id="getJobById" resultType="com.swx.model.Job">
+        select *
+        from T_JOB
+        where j_id=#{j_id}
     </select>
 </mapper>

@@ -1,9 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.swx.dao.RewardMapper">
+    <insert id="addReward">
+        insert into T_REWARD values(T_REWARD_SEQ.nextval,#{re_eid},#{re_money},#{re_time},#{re_reason},#{re_status})
+    </insert>
+    <update id="updateRewardStatusByEid">
+        update T_REWARD set RE_STATUS=0
+        where RE_EID=#{re_eid}
+    </update>
     <select id="listAll" resultType="com.swx.model.Reward">
         select *
         from T_REWARD
         where re_eid=#{e_id}
+    </select>
+    <select id="searchAll" resultType="com.swx.model.Reward">
+        select *
+        from T_REWARD
     </select>
 </mapper>

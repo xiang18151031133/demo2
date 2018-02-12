@@ -15,7 +15,7 @@ public class Employee implements Serializable {
     private int e_cid;//公司id
     private String e_jdesc;//部门名称
     private String e_jname;//职位
-    private String e_basicwage;//基本工资
+    private double e_basicwage;//基本工资
     private String e_workstarttime;//上班时间
     private String e_workendtime;//下班时间
     private int e_workstatus;//状态（0离职时只可查看 1试用 2在职）
@@ -23,7 +23,7 @@ public class Employee implements Serializable {
     public Employee() {
     }
 
-    public Employee(int e_id, String e_name, String e_password, String e_realname, int e_age, String e_ethnicity, String e_phone, String e_address, String e_hiretime, int e_cid, String e_jdesc, String e_jname, String e_basicwage, String e_workstarttime, String e_workendtime, int e_workstatus) {
+    public Employee(int e_id, String e_name, String e_password, String e_realname, int e_age, String e_ethnicity, String e_phone, String e_address, String e_hiretime, int e_cid, String e_jdesc, String e_jname, double e_basicwage, String e_workstarttime, String e_workendtime, int e_workstatus) {
         this.e_id = e_id;
         this.e_name = e_name;
         this.e_password = e_password;
@@ -138,11 +138,11 @@ public class Employee implements Serializable {
         this.e_jname = e_jname;
     }
 
-    public String getE_basicwage() {
+    public double getE_basicwage() {
         return e_basicwage;
     }
 
-    public void setE_basicwage(String e_basicwage) {
+    public void setE_basicwage(double e_basicwage) {
         this.e_basicwage = e_basicwage;
     }
 

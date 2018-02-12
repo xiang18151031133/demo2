@@ -33,8 +33,9 @@ public class RecruitmentController {
     }
     @RequestMapping(value = "/showRecruitment",method = RequestMethod.GET)
     public String showRecruitment(Recruitment recruitment,HttpSession session)throws Exception{
-        User user= (User) session.getAttribute("user");
-        User user1=userService.getUserById(user);
+        User user1= (User) session.getAttribute("user");
+        /*User user1=userService.getUserById(user);
+        System.out.println("@@@@"+user1);*/
         session.setAttribute("user",user1);
         Recruitment recruitment1=recruitmentService.getRecruitmentById(recruitment);
         session.setAttribute("recruitment",recruitment1);

@@ -1,9 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.swx.dao.AttendanceMapper">
+    <insert id="addAttendanceByUp">
+        insert into T_ATTENDANCE values(T_ATTENDANCE_SEQ.nextval,#{at_eid},#{at_workTime,jdbcType=VARCHAR},
+        #{at_checkResult},#{at_closeTime,jdbcType=VARCHAR})
+    </insert>
+    <update id="updateAttendanceByDown">
+        update T_ATTENDANCE set at_closetime=#{at_closeTime}
+        where at_id=#{at_id}
+    </update>
     <select id="listAll" resultType="com.swx.model.Attendance">
         select *
         from T_ATTENDANCE
         where at_eid=#{e_id}
+    </select>
+    <select id="getAttendanceById" resultType="com.swx.model.Attendance">
+        select *
+        from T_ATTENDANCE
+        where at_id=#{at_id}
     </select>
 </mapper>

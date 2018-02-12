@@ -7,4 +7,7 @@ import java.util.List;
 
 public interface AttendanceService {
     List<Attendance> listAll(Employee employee);
+    boolean addAttendanceByUp(Attendance attendance);
+    boolean updateAttendanceByDown(Attendance attendance);
+    Attendance getAttendanceById(int at_id);
 }

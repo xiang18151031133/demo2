@@ -24,4 +24,18 @@
         from T_EMPLOYEE
         where e_id=#{e_id}
     </select>
+    <select id="listAll" resultType="com.swx.model.Employee">
+        select *
+        from T_EMPLOYEE
+    </select>
+    <select id="listByJdesc" resultType="com.swx.model.Employee">
+        select *
+        from T_EMPLOYEE
+        where e_jdesc=#{e_jdesc}
+    </select>
+    <select id="listByJname" resultType="com.swx.model.Employee">
+        select *
+        from T_EMPLOYEE
+        where E_JNAME=#{e_jname}
+    </select>
 </mapper>

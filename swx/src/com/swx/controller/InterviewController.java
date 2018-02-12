@@ -41,7 +41,8 @@ public class InterviewController {
     @RequestMapping(value = "/showResume2",method = RequestMethod.POST)
     public String showResume2(User user, HttpSession session){
         User user1=userService.getUserById(user);
-        session.setAttribute("user",user1);
+        User user2=userService.getUser(user1);
+        session.setAttribute("user",user2);
         return "showResume2";
     }
 
@@ -56,7 +57,8 @@ public class InterviewController {
     public String toUpdateInterview(Interview interview,User user,HttpSession session){
         Interview interview1=interviewService.getInterviewById(interview);
         User user1=userService.getUserById(user);
-        session.setAttribute("user",user1);
+        User user2=userService.getUser(user1);
+        session.setAttribute("user",user2);
         session.setAttribute("interview",interview1);
         return "toUpdateInterview";
     }
@@ -75,11 +77,12 @@ public class InterviewController {
 
     @RequestMapping(value = "/offer",method = RequestMethod.GET)
     public String offer(HttpSession session){
-        User user= (User) session.getAttribute("user");
-        User user1=userService.getUserById(user);
+        User user2= (User) session.getAttribute("user");
+        //User user1=userService.getUserById(user);
+        User user1=userService.getUser(user2);
         if(user1.getU_status()==1){
             List<Recruitment> recruitments =recruitmentService.listAll();
-            List<Interview> interviews =interviewService.getInterviewByUid(user.getU_id());
+            List<Interview> interviews =interviewService.getInterviewByUid(user1.getU_id());
             session.setAttribute("interviews",interviews);
             session.setAttribute("recruitments",recruitments);
         }
@@ -123,7 +126,8 @@ public class InterviewController {
         Interview interview1=interviewService.getInterviewById(interview);
         interview1.setI_result(1);
         interviewService.updateInterviw(interview1);
-        User user1=userService.getUserById(user);
+        User user2=userService.getUserById(user);
+        User user1=userService.getUser(user2);
         user1.setU_status(0);
         userService.updateUser(user1);
         return "adminSuccess";

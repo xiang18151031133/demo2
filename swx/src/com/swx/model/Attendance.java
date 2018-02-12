@@ -7,7 +7,7 @@ public class Attendance implements Serializable {
     private int at_eid;//员工
     private String at_workTime;//上班时间
     private String at_closeTime;//下班时间
-    private int at_checkResult;//考勤结果（0、正常 1、迟到 2、早退 ）
+    private int at_checkResult;//考勤结果（0、正常 1、有问题 ）
 
     public Attendance() {
     }

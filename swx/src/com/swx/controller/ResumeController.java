@@ -24,14 +24,15 @@ public class ResumeController {
         User user= (User) session.getAttribute("user");
         resume.setUser(user);
         resumeService.addResume(resume);
-        Resume resume1=resumeService.getResume();
+        Resume resume1=resumeService.getResume(user.getU_id());
         session.setAttribute("resume",resume1);
         return "showResume";
     }
 
     @RequestMapping(value = "/updateOrAdd",method = RequestMethod.POST)
     public String updateOrAdd(HttpSession session){
-        Resume resume=resumeService.getResume();
+        User user= (User) session.getAttribute("user");
+        Resume resume=resumeService.getResume(user.getU_id());
         if(resume==null){
             return "addResume";
         }
@@ -42,7 +43,8 @@ public class ResumeController {
     @RequestMapping(value = "/updateResume",method = RequestMethod.POST)
     public String updateResume(Resume resume,HttpSession session)throws Exception{
         resumeService.updateResume(resume);
-        Resume resume1=resumeService.getResume();
+        User user= (User) session.getAttribute("user");
+        Resume resume1=resumeService.getResume(user.getU_id());
         session.setAttribute("resume",resume1);
         return "showResume";
     }

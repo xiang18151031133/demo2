@@ -1,8 +1,24 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.swx.dao.DepartmentMapper">
+    <insert id="addDepartment">
+        insert into T_DEPARTMENT values(T_DEPARTMENT_SEQ.nextval,#{d_name},#{d_cid},#{d_createTime})
+    </insert>
+    <update id="updateDeptById">
+        update T_DEPARTMENT set d_name=#{d_name}
+        where d_id=#{d_id}
+    </update>
+    <delete id="deleteDeptById">
+        delete from T_DEPARTMENT
+        where d_id=#{d_id}
+    </delete>
     <select id="listAll" resultType="com.swx.model.Department">
         select *
         from T_DEPARTMENT
+    </select>
+    <select id="getDeptById" resultType="com.swx.model.Department">
+        select *
+        from T_DEPARTMENT
+        where d_id=#{d_id}
     </select>
 </mapper>

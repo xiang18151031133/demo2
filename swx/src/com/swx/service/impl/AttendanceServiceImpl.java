@@ -16,4 +16,19 @@ public class AttendanceServiceImpl implements AttendanceService {
     public List<Attendance> listAll(Employee employee) {
         return attendanceMapper.listAll(employee);
     }
+
+    @Override
+    public boolean addAttendanceByUp(Attendance attendance) {
+        return attendanceMapper.addAttendanceByUp(attendance);
+    }
+
+    @Override
+    public boolean updateAttendanceByDown(Attendance attendance) {
+        return attendanceMapper.updateAttendanceByDown(attendance);
+    }
+
+    @Override
+    public Attendance getAttendanceById(int at_id) {
+        return attendanceMapper.getAttendanceById(at_id);
+    }
 }

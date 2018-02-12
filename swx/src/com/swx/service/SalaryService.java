@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface SalaryService {
     List<Salary> listAll(Employee employee);
+    boolean addSalary(Salary salary);
 }
