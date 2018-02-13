@@ -6,7 +6,7 @@
 
     <insert id="addRecruitment">
         insert into T_RECRUITMENT values(T_RECRUITMENT_SEQ.nextval,#{rm_cid},#{rm_jdesc},#{rm_jname},
-        #{rm_peopleneeded},#{rm_requirement},#{rm_money},#{rm_workplace},#{rm_uid})
+        #{rm_peopleneeded},#{rm_requirement},#{rm_money},#{rm_workplace},#{rm_uid},#{rm_jobdesc})
     </insert>
     <select id="listAll" resultType="com.swx.model.Recruitment">
         select * from T_RECRUITMENT

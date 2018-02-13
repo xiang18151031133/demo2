@@ -5,9 +5,22 @@
         insert into T_SALARY values(T_SALARY_SEQ.nextval,#{s_eid},#{s_bonus},#{s_date},#{s_status},
         #{s_punish},#{s_salary},#{s_finalSalary})
     </insert>
+    <update id="updateSalary">
+        update T_SALARY set S_STATUS=#{s_status}
+        where s_id=#{s_id}
+    </update>
     <select id="listAll" resultType="com.swx.model.Salary">
         select *
         from T_SALARY
         where s_eid=#{e_id}
+    </select>
+    <select id="getSalaryById" resultType="com.swx.model.Salary">
+        select *
+        from T_SALARY
+        where s_id=#{s_id}
+    </select>
+    <select id="searchAll" resultType="com.swx.model.Salary">
+        select *
+        from T_SALARY
     </select>
 </mapper>

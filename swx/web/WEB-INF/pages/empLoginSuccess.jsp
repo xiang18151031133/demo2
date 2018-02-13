@@ -162,12 +162,14 @@
                     <td>${salary.s_salary}</td>
                     <td>${salary.s_finalSalary}</td>
                     <td>
-                        <form>
+                        <form action="sureSalary" method="post">
+                            <input type="hidden" name="s_id" value="${salary.s_id}"/>
                             <input type="submit" value="确认"/>
                         </form>
                     </td>
                     <td>
-                        <form>
+                        <form action="appealSalary" method="post">
+                            <input type="hidden" name="s_id" value="${salary.s_id}"/>
                             <input type="submit" value="申诉"/>
                         </form>
                     </td>
@@ -242,7 +244,7 @@
             </c:forEach>
         </table>
     </div>
-    <div>
+    <%--<div>
         <select id="st1" name="d_id">
             <option value="-1">---请选择部门---</option>
             <c:forEach items="${sessionScope.departments}" var="department">
@@ -252,6 +254,6 @@
         <select id="st2" name="j_id">
             <option value="-2">---请选择职位---</option>
         </select>
-    </div>
+    </div>--%>
 </body>
 </html>

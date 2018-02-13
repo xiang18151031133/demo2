@@ -21,7 +21,7 @@
     <a href="offer">查看面试通知</a>
     <br>
     <c:forEach items="${sessionScope.recruitments}" var="rec">
-        <p><a href="showRecruitment?rm_id=${rec.rm_id}">${rec.rm_jdesc}</a></p>
+        <p><a href="showRecruitment?rm_id=${rec.rm_id}">${rec.rm_jobdesc}</a></p>
     </c:forEach>
 
 </body>

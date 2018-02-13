@@ -7,7 +7,7 @@ public class Salary implements Serializable {
     private int s_eid;//员工id
     private double s_bonus;//奖金
     private String s_date;//薪资对应时间
-    private int s_status;//员工确认结果（0没有 1复查 2确认）
+    private int s_status;//员工确认结果（0没有 1申诉 2确认）
     private double s_punish;//罚款
     private double s_salary;//薪资
     private double s_finalSalary;//最终薪资

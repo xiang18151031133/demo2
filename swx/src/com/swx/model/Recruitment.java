@@ -6,7 +6,8 @@ import java.io.Serializable;
 public class Recruitment implements Serializable{
     private int rm_id;//
     private int rm_cid;//对应的公司
-    private String rm_jdesc;//招聘描述
+    private String rm_jobdesc;//招聘描述
+    private String rm_jdesc;//招聘部门
     private String rm_jname;//对应的职位
     private int rm_peopleneeded;//需求的人数
     private String rm_requirement;//职位需求
@@ -17,9 +18,10 @@ public class Recruitment implements Serializable{
     public Recruitment() {
     }
 
-    public Recruitment(int rm_id, int rm_cid, String rm_jdesc, String rm_jname, int rm_peopleneeded, String rm_requirement, double rm_money, String rm_workplace, int rm_uid) {
+    public Recruitment(int rm_id, int rm_cid, String rm_jobdesc, String rm_jdesc, String rm_jname, int rm_peopleneeded, String rm_requirement, double rm_money, String rm_workplace, int rm_uid) {
         this.rm_id = rm_id;
         this.rm_cid = rm_cid;
+        this.rm_jobdesc = rm_jobdesc;
         this.rm_jdesc = rm_jdesc;
         this.rm_jname = rm_jname;
         this.rm_peopleneeded = rm_peopleneeded;
@@ -43,6 +45,14 @@ public class Recruitment implements Serializable{
 
     public void setRm_cid(int rm_cid) {
         this.rm_cid = rm_cid;
+    }
+
+    public String getRm_jobdesc() {
+        return rm_jobdesc;
+    }
+
+    public void setRm_jobdesc(String rm_jobdesc) {
+        this.rm_jobdesc = rm_jobdesc;
     }
 
     public String getRm_jdesc() {
@@ -106,11 +116,12 @@ public class Recruitment implements Serializable{
         return "Recruitment{" +
                 "rm_id=" + rm_id +
                 ", rm_cid=" + rm_cid +
+                ", rm_jobdesc='" + rm_jobdesc + '\'' +
                 ", rm_jdesc='" + rm_jdesc + '\'' +
                 ", rm_jname='" + rm_jname + '\'' +
                 ", rm_peopleneeded=" + rm_peopleneeded +
                 ", rm_requirement='" + rm_requirement + '\'' +
-                ", rm_money='" + rm_money + '\'' +
+                ", rm_money=" + rm_money +
                 ", rm_workplace='" + rm_workplace + '\'' +
                 ", rm_uid=" + rm_uid +
                 '}';

@@ -18,7 +18,8 @@
 </head>
 <body>
     <form action="addRecruitment" method="post">
-        工作描述：<input name="rm_jdesc"/><br>
+        工作描述：<input name="rm_jobdesc"/><br>
+        对应部门：<input name="rm_jdesc"/><br>
         对应的职位:
         <select name="rm_jname">
             <c:forEach items="${sessionScope.jobs}" var="jobs">

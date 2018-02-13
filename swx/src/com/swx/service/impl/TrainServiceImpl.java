@@ -16,4 +16,9 @@ public class TrainServiceImpl implements TrainService {
     public List<Train> listAll(Employee employee) {
         return trainMapper.listAll(employee);
     }
+
+    @Override
+    public boolean addTrain(Train train) {
+        return trainMapper.addTrain(train);
+    }
 }

@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.swx.dao.TrainMapper">
+    <insert id="addTrain">
+        insert into T_TRAIN values(T_TRAIN_SEQ.nextval,#{t_eid},#{t_time},#{t_address},#{t_train})
+    </insert>
     <select id="listAll" resultType="com.swx.model.Train">
         select *
         from T_TRAIN

@@ -65,8 +65,9 @@
     <button id="b3">查看部门信息</button>
     <button id="b4">查看职位信息</button>
     <button id="b5">查看员工信息</button>
+    <button id="b6">申诉信息</button>
     <a href="payOff">发工资</a>
-    <a href="">发布培训信息</a>
+    <a href="taAddTrain">发布培训信息</a>
     <div id="d1" style="display: none">
         <form action="addDept" method="post">
             请输入部门名称：<input name="d_name"/><br>
@@ -145,6 +146,22 @@
     <div id="d5" style="display: none">
         <c:forEach items="${sessionScope.employees}" var="emp">
             <p><a href="allEmp?e_id=${emp.e_id}">${emp.e_realname}</a></p>
+        </c:forEach>
+    </div>
+    <div id="d6">
+        <c:forEach items="${sessionScope.salaries}" var="salary">
+            <c:if test="${salary.s_status==2}">
+                <c:forEach items="${sessionScope.employees}" var="emp">
+                    <c:if test="${emp.e_id==salary.s_eid}">
+                        <a href="allEmp?e_id=${emp.e_id}">${emp.e_realname}</a>
+                        &nbsp;&nbsp;
+                        <form action="ensureSal" style="display: inline">
+                            <input type="hidden" name="s_id" value="${salary.s_id}"/>
+                            <input type="submit" value="确认"/>
+                        </form><br>
+                    </c:if>
+                </c:forEach>
+            </c:if>
         </c:forEach>
     </div>
 </body>

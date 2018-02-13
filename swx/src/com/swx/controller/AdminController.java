@@ -37,6 +37,12 @@ public class AdminController {
     @Resource
     private SalaryService salaryService;
 
+    @Resource
+    private TrainService trainService;
+
+    @Resource
+    private AttendanceService attendanceService;
+
 
     @RequestMapping(value = "/toAdminLogin",method = RequestMethod.GET)
     public String toAdminLogin(){
@@ -49,11 +55,13 @@ public class AdminController {
         List<Job> jobs=jobService.listAll();
         List<Department> departments=departmentService.listAll();
         List<Employee> employees=employeeService.listAll();
+        List<Salary> salaries=salaryService.searchAll();
         if(admin1!=null){
             session.setAttribute("admin",admin1);
             session.setAttribute("jobs",jobs);
             session.setAttribute("departments",departments);
             session.setAttribute("employees",employees);
+            session.setAttribute("salaries",salaries);
             return "adminSuccess";
         }
         return "../../index";
@@ -179,6 +187,8 @@ public class AdminController {
         session.setAttribute("employee",employee1);
         List<Department> departments=departmentService.listAll();
         session.setAttribute("departments",departments);
+        List<Attendance> attendances=attendanceService.listAll(employee1);
+        session.setAttribute("attendances",attendances);
         return "allEmp";
     }
 
@@ -252,6 +262,65 @@ public class AdminController {
             salaryService.addSalary(salary);
             rewardService.updateRewardStatusByEid(e.getE_id());
         }
+        return "adminSuccess";
+    }
+
+    @RequestMapping("/taAddTrain")
+    public String toAddTrain(HttpSession session){
+        List<Department> departments=departmentService.listAll();
+        List<Employee> employeeList=employeeService.listAll();
+        session.setAttribute("employeeList",employeeList);
+        session.setAttribute("departments",departments);
+        return "addTrain";
+    }
+
+    @RequestMapping("/addTrainToAll")
+    public String addTrainToAll(Train train,String d_name){
+        List<Employee> employees=employeeService.listAll();
+        for(Employee e:employees){
+            if(d_name.equals(e.getE_jdesc())){
+                train.setT_eid(e.getE_id());
+                trainService.addTrain(train);
+            }
+        }
+        return "addTrain";
+    }
+
+    @RequestMapping("/addTrainByEmp")
+    public String  addTrainByEmp(Train train,String str){
+        String[] arr=str.split(",");
+        for(int i=0;i<arr.length;i++){
+            if(arr.length==1&&arr[i].equals("")){
+                return "addTrain";
+            }
+        }
+        for(int i=0;i<arr.length;i++){
+            if(!arr[i].equals(",")){
+                train.setT_eid(Integer.parseInt(arr[i]));
+                trainService.addTrain(train);
+            }
+        }
+        return "addTrain";
+    }
+
+    @RequestMapping("/bonusOrPunish")
+    public String bonusOrPunish(Reward reward,HttpSession session){
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+        String str=sdf.format(new Date());
+        Employee employee1= (Employee) session.getAttribute("employee");
+        reward.setRe_eid(employee1.getE_id());
+        reward.setRe_time(str);
+        rewardService.addReward(reward);
+        return "allEmp";
+    }
+
+    @RequestMapping("/ensureSal")
+    public String ensureSal(Salary salary,HttpSession session){
+        Salary salary1=salaryService.getSalaryById(salary);
+        salary1.setS_status(1);
+        salaryService.updateSalary(salary1);
+        List<Salary> salaries=salaryService.searchAll();
+        session.setAttribute("salaries",salaries);
         return "adminSuccess";
     }
 }

@@ -21,4 +21,19 @@ public class SalaryServiceImpl implements SalaryService {
     public boolean addSalary(Salary salary) {
         return salaryMapper.addSalary(salary);
     }
+
+    @Override
+    public Salary getSalaryById(Salary salary) {
+        return salaryMapper.getSalaryById(salary);
+    }
+
+    @Override
+    public boolean updateSalary(Salary salary) {
+        return salaryMapper.updateSalary(salary);
+    }
+
+    @Override
+    public List<Salary> searchAll() {
+        return salaryMapper.searchAll();
+    }
 }

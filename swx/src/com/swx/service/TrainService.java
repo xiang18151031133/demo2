@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface TrainService {
     List<Train> listAll(Employee employee);
+    boolean addTrain(Train train);
 }

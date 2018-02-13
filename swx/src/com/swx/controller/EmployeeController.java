@@ -241,4 +241,30 @@ public class EmployeeController {
         }
         return "none";
     }
+
+    @RequestMapping("/sureSalary")
+    public String sureSalary(Salary salary,HttpSession session){
+        Salary salary1=salaryService.getSalaryById(salary);
+        if(salary1.getS_status()==0){
+            salary1.setS_status(1);
+            salaryService.updateSalary(salary1);
+            Employee employee= (Employee) session.getAttribute("employee");
+            List<Salary> salaries=salaryService.listAll(employee);
+            session.setAttribute("salaries",salaries);
+        }
+        return "empLoginSuccess";
+    }
+
+    @RequestMapping("/appealSalary")
+    public String appealSalary(Salary salary,HttpSession session){
+        Salary salary1=salaryService.getSalaryById(salary);
+        if(salary1.getS_status()==0){
+            salary1.setS_status(2);
+            salaryService.updateSalary(salary1);
+            Employee employee= (Employee) session.getAttribute("employee");
+            List<Salary> salaries=salaryService.listAll(employee);
+            session.setAttribute("salaries",salaries);
+        }
+        return "empLoginSuccess";
+    }
 }

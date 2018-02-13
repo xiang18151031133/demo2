@@ -51,16 +51,36 @@
                 $("#d1").css("display","block");
                 $("#d2").css("display","none");
                 $("#d3").css("display","none");
+                $("#d4").css("display","none");
+                $("#d5").css("display","none");
             })
             $("#b2").click(function () {
                 $("#d1").css("display","none");
                 $("#d2").css("display","block");
                 $("#d3").css("display","none");
+                $("#d4").css("display","none");
+                $("#d5").css("display","none");
             })
             $("#b3").click(function () {
                 $("#d1").css("display","none");
                 $("#d2").css("display","none");
                 $("#d3").css("display","block");
+                $("#d4").css("display","none");
+                $("#d5").css("display","none");
+            })
+            $("#b4").click(function () {
+                $("#d1").css("display","none");
+                $("#d2").css("display","none");
+                $("#d3").css("display","none");
+                $("#d4").css("display","block");
+                $("#d5").css("display","none");
+            })
+            $("#b5").click(function () {
+                $("#d1").css("display","none");
+                $("#d2").css("display","none");
+                $("#d3").css("display","none");
+                $("#d4").css("display","none");
+                $("#d5").css("display","block");
             })
         })
     </script>
@@ -69,6 +89,8 @@
     <button id="b1">修改员工部门职位</button>
     <button id="b2">员工上下班时间</button>
     <button id="b3">修改上班状态</button>
+    <button id="b4">员工考勤</button>
+    <button id="b5">奖惩</button>
     <div>
         <table border="1" cellspacing="0" cellpadding="10">
             <tr>
@@ -126,6 +148,38 @@
                 <option value="0">离职</option>
             </select>
             <input type="submit" value="提交"/>
+        </form>
+    </div>
+    <div style="display: none" id="d4">
+        <table border="1" cellspacing="0" cellpadding="10">
+            <tr>
+                <th>员工姓名</th>
+                <th>上班时间</th>
+                <th>下班时间</th>
+            </tr>
+            <c:forEach items="${sessionScope.attendances}" var="attendance">
+                <tr>
+                    <td>
+                        <c:if test="${attendance.at_eid==sessionScope.employee.e_id}">
+                            ${sessionScope.employee.e_realname}
+                        </c:if>
+                    </td>
+                    <td>${attendance.at_workTime}</td>
+                    <td>${attendance.at_closeTime}</td>
+                </tr>
+            </c:forEach>
+        </table>
+    </div>
+    <div id="d5" style="display: none">
+        <form action="bonusOrPunish" m name="">
+            奖惩金额：<input type="number" name="re_money"/><br>
+            奖惩理由：<input name="re_reason"/><br>
+            奖或惩:
+            <select name="re_status">
+                <option value="1">奖励</option>
+                <option value="2">惩罚</option>
+            </select>
+            <input type="submit" value="确认"/>
         </form>
     </div>
 </body>
